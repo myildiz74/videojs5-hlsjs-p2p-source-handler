@@ -5,12 +5,12 @@
     "email": "contact@streamroot.io"
   },
   "version": "0.0.1",
-  "main": "./lib/main.js",
+  "main": "./lib/vjs-hls.js",
   "publishConfig":{
     "registry":"https://registry.npmjs.org/"
   },
   "dependencies": {
-    "hls.js": "^0.5.17",
+    "streamroot-hlsjs-p2p-bundle": "^3.6.4",
     "videojs-quality-picker": "^0.0.3"
   },
   "license": "MIT",
