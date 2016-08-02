@@ -14,6 +14,11 @@ dependencies:
         - git config --global user.name $STREAMROOT_USERNAME
         - git clone git@github.com:streamroot/toolkit.git
 
+        # Set hlsjs-p2p-bundle version
+        - toolkit/set_dependency_version.rb --exclude_branches master
+                                            --dependency_path dependencies.streamroot-hlsjs-p2p-bundle
+                                            --version beta
+
         - npm install -g grunt-cli
         - npm prune
 
@@ -35,7 +40,7 @@ deployment:
             - grunt browserify:dist
             - toolkit/add_banner.rb --file dist/$DIST_FILE
                                     --deploy_env $CIRCLE_BRANCH
-                                    --dependencies hls.js
+                                    --dependencies streamroot-hlsjs-p2p-bundle
 
             # Upload dist
             - cp dist/$DIST_FILE $CIRCLE_ARTIFACTS/$DIST_FILE
@@ -60,7 +65,7 @@ deployment:
             - toolkit/add_banner.rb --file dist/$DIST_FILE
                                     --deploy_env staging
                                     --version $(toolkit/current_version.rb)
-                                    --dependencies hls.js
+                                    --dependencies streamroot-hlsjs-p2p-bundle
             - cp dist/$DIST_FILE $CIRCLE_ARTIFACTS/$DIST_FILE
 
             # Upload version
@@ -108,7 +113,7 @@ deployment:
             - grunt browserify:dist
             - toolkit/add_banner.rb --file dist/$DIST_FILE
                                     --version $(toolkit/current_version.rb)
-                                    --dependencies hls.js
+                                    --dependencies streamroot-hlsjs-p2p-bundle
             - cp dist/$DIST_FILE $CIRCLE_ARTIFACTS/$DIST_FILE
 
             # Upload version
