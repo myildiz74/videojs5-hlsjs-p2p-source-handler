@@ -1,7 +1,7 @@
 {
-  "name": "videojs-hls.js",
+  "name": "videojs5-hlsjs-p2p-source-handler",
   "author": {
-    "name": "StreamRoot",
+    "name": "Streamroot",
     "email": "contact@streamroot.io"
   },
   "version": "0.0.1",
@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:streamroot/videojs5-hlsjs-source-handler"
+    "url": "git@github.com:streamroot/videojs5-hlsjs-p2p-source-handler"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
