@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Dev]
 
 ## [Unreleased]
+### Fixed
+- Fix ci tools
+
 ### Changed
 - PreProd distribution name to videojs5-hlsjs-source-handler
 
