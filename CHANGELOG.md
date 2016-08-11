@@ -4,9 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Dev]
 
-### Fixed
-
-- Starting loading before play (now loads when media element requests data)
-
 ## [Unreleased]
+### Changed
+- PreProd distribution name to videojs5-hlsjs-source-handler
 
+### Fixed
+- Starting loading before play (now loads when media element requests data)
