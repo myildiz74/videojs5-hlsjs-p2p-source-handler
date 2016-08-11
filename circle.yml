@@ -120,10 +120,10 @@ deployment:
             - toolkit/upload_to_s3.rb --bucket $S3_PREPROD_BUCKET
                                       --region eu-west-1
                                       --file $CIRCLE_ARTIFACTS/$DIST_FILE
-                                      --destinations videojs-hlsjs-source-handler/$(toolkit/current_version.rb --major)/videojs-hlsjs-source-handler.js
-                                                     videojs-hlsjs-source-handler/$(toolkit/current_version.rb --no_patch)/videojs-hlsjs-source-handler.js
-                                                     videojs-hlsjs-source-handler/$(toolkit/current_version.rb)/videojs-hlsjs-source-handler.js
-                                                     videojs-hlsjs-source-handler/latest/videojs-hlsjs-source-handler.js
+                                      --destinations videojs5-hlsjs-source-handler/$(toolkit/current_version.rb --major)/videojs5-hlsjs-source-handler.js
+                                                     videojs5-hlsjs-source-handler/$(toolkit/current_version.rb --no_patch)/videojs5-hlsjs-source-handler.js
+                                                     videojs5-hlsjs-source-handler/$(toolkit/current_version.rb)/videojs5-hlsjs-source-handler.js
+                                                     videojs5-hlsjs-source-handler/latest/videojs5-hlsjs-source-handler.js
                                       --key $S3_KEY
                                       --secret $S3_SECRET
 
