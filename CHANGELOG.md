@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Dev]
 
+### Fixed
+
+- Starting loading before play (now loads when media element requests data)
+
 ## [Unreleased]
 
 ## [0.0.8] - 2016-08-11
