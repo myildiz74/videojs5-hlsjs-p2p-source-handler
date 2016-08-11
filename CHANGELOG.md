@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Dev]
 
 ## [Unreleased]
+
+## [0.1.4] - 2016-08-11
 ### Changed
 - PreProd distribution name to videojs5-hlsjs-source-handler
 
