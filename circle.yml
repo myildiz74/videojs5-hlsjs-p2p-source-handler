@@ -72,7 +72,7 @@ deployment:
             # Build package.json
             - toolkit/build_dist_package.rb --version $(toolkit/current_version.rb)
                                             --main ./dist/$DIST_FILE
-                                            --name $CIRCLE_PROJECT_REPONAME
+                                            --name streamroot-videojs5-hlsjs-p2p-source-handler
                                             -o dist/package.json
 
             # Copy sources (lib) into dist folder
@@ -134,7 +134,7 @@ deployment:
             # Build package.json
             - toolkit/build_dist_package.rb --version $(toolkit/current_version.rb)
                                             --main ./dist/$DIST_FILE
-                                            --name $CIRCLE_PROJECT_REPONAME
+                                            --name streamroot-videojs5-hlsjs-p2p-source-handler
                                             -o dist/package.json
 
             # Copy sources (lib) into dist folder
