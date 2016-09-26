@@ -8,6 +8,7 @@ machine:
 dependencies:
     pre:
         - gem install aws-sdk
+        - 'echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > ~/.npmrc'
 
         # Clone tool
         - git config --global user.email $STREAMROOT_EMAIL
@@ -68,6 +69,19 @@ deployment:
                                     --dependencies streamroot-hlsjs-p2p-bundle
             - cp dist/$DIST_FILE $CIRCLE_ARTIFACTS/$DIST_FILE
 
+            # Build package.json
+            - toolkit/build_dist_package.rb --version $(toolkit/current_version.rb)
+                                            --main ./dist/$DIST_FILE
+                                            --name $CIRCLE_PROJECT_REPONAME
+                                            -o dist/package.json
+
+            # Copy sources (lib) into dist folder
+            # We ship the sources to be able to access private API in downstream projects
+            - cp -R lib dist/
+
+            # Publish
+            - npm publish dist/ --tag beta
+
             # Upload version
             - toolkit/upload_to_s3.rb --bucket $S3_STAGING_BUCKET
                                       --region eu-west-1
@@ -116,6 +130,19 @@ deployment:
                                     --version $(toolkit/current_version.rb)
                                     --dependencies streamroot-hlsjs-p2p-bundle
             - cp dist/$DIST_FILE $CIRCLE_ARTIFACTS/$DIST_FILE
+
+            # Build package.json
+            - toolkit/build_dist_package.rb --version $(toolkit/current_version.rb)
+                                            --main ./dist/$DIST_FILE
+                                            --name $CIRCLE_PROJECT_REPONAME
+                                            -o dist/package.json
+
+            # Copy sources (lib) into dist folder
+            # We ship the sources to be able to access private API in downstream projects
+            - cp -R lib dist/
+
+            # Publish
+            - npm publish dist/ --tag rc
 
             # Upload version
             - toolkit/upload_to_s3.rb --bucket $S3_PREPROD_BUCKET
