@@ -10,8 +10,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "streamroot-hlsjs-p2p-bundle": "^3.6.4",
-    "videojs-quality-picker": "^0.0.3"
+    "streamroot-hlsjs-p2p-bundle": "^3.6.4"
   },
   "license": "MIT",
   "repository": {
