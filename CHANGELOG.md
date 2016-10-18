@@ -12,10 +12,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Quality picker dependency in `package.json` and initialization in test page. It's usage was removed in modifications, required for the Brightcove plugin.
 
 ## [0.2.3] - 2016-09-27
-## Changed
+### Changed
 - Modifications required to use with Brightcove plugin: Hls.js is initialized lazy, only at point when media is requesting data. This way we can be sure that plugin is initialized already and our player instance carries P2P config information.
 
-## Added
+### Added
 - Publish to NPM
 
 ## [0.1.4] - 2016-08-11
