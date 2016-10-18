@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Dev]
 
 ## [Unreleased]
+### Fixed
+- Broken playback when video source was set in video tag. It was caused by source handler disposal, triggered by video.js. See comments in `lib/videojs5-hlsjs-source-handler.js` for detailed explanation.
+
+### Removed
+- Quality picker dependency in `package.json` and initialization in test page. It's usage was removed in modifications, required for the Brightcove plugin.
 
 ## [0.2.3] - 2016-09-27
 ## Changed
