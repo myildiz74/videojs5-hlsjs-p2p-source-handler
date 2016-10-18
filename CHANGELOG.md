@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Dev]
 
 ## [Unreleased]
+
+## [0.2.3] - 2016-09-27
 ## Changed
 - Modifications required to use with Brightcove plugin: Hls.js is initialized lazy, only at point when media is requesting data. This way we can be sure that plugin is initialized already and our player instance carries P2P config information.
 
