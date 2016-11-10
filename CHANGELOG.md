@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.12] - 2016-11-10
+### Fixed
+- Broken fallback logic when not in autoplay
+
 ## [0.2.4] - 2016-10-18
 ### Fixed
 - Broken playback when video source was set in video tag. It was caused by source handler disposal, triggered by video.js. See comments in `lib/videojs5-hlsjs-source-handler.js` for detailed explanation.
