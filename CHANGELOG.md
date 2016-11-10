@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Dev]
 
 ## [Unreleased]
+
+## [0.2.12] - 2016-11-10
 ### Fixed
 - Broken fallback logic when not in autoplay
 
