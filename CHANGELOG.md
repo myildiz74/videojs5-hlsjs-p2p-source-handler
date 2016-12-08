@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.20] - 2016-12-08
+### Updated
+- hlsjs-p2p-bundle version to ^4.0.0
+
 ## [0.2.12] - 2016-11-10
 ### Fixed
 - Broken fallback logic when not in autoplay
