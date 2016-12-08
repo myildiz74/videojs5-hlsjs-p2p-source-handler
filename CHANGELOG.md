@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Dev]
 
 ## [Unreleased]
+
+## [0.2.20] - 2016-12-08
 ### Updated
 - hlsjs-p2p-bundle version to ^4.0.0
 
