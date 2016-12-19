@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Dev]
 
 ## [Unreleased]
+### Fixed
+- copy hls.js config before passing it to hls.js (it assigns properties from default conf in place)
 
 ## [0.2.20] - 2016-12-08
 ### Updated
