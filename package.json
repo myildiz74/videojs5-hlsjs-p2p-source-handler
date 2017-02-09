@@ -12,6 +12,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && webpack --progress",
+    "build:dev": "npm run clean && webpack --progress --watch",
     "dev": "webpack-dev-server -d"
   },
   "dependencies": {
