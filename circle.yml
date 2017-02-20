@@ -20,7 +20,6 @@ dependencies:
                                             --dependency_path dependencies.streamroot-hlsjs-p2p-bundle
                                             --version beta
 
-        - npm install -g grunt-cli
         - npm prune
 
     override:
@@ -38,7 +37,7 @@ deployment:
         branch: /^(?!(?:dev|master)$).+$/
         commands:
             # Generate dist
-            - grunt browserify:dist
+            - npm run build
             - toolkit/add_banner.rb --file dist/$DIST_FILE
                                     --deploy_env $CIRCLE_BRANCH
                                     --dependencies streamroot-hlsjs-p2p-bundle
@@ -65,7 +64,7 @@ deployment:
             - toolkit/set_version.rb --version $(toolkit/current_version.rb --beta ${CIRCLE_BUILD_NUM})
 
             # Generate dist
-            - grunt browserify:dist
+            - npm run build
             - toolkit/add_banner.rb --file dist/$DIST_FILE
                                     --deploy_env staging
                                     --version $(toolkit/current_version.rb)
@@ -91,6 +90,48 @@ deployment:
                                       --file $CIRCLE_ARTIFACTS/$DIST_FILE
                                       --destinations $CIRCLE_PROJECT_REPONAME/$(toolkit/current_version.rb)/$DIST_FILE
                                                      $CIRCLE_PROJECT_REPONAME/latest/$DIST_FILE
+                                      --key $S3_KEY
+                                      --secret $S3_SECRET
+
+            #
+            ## Debug builds
+            #
+
+            # Cleanup
+            - rm -rf dist
+
+            # Install debug streamroot-hlsjs-p2p-bundle
+            - rm -rf node_modules/streamroot-hlsjs-p2p-bundle
+            - npm install @streamroot/hlsjs-p2p-bundle-debug@beta
+            - mv node_modules/@streamroot/hlsjs-p2p-bundle-debug node_modules/streamroot-hlsjs-p2p-bundle
+            - mv node_modules/streamroot-hlsjs-p2p-bundle/hlsjs-p2p-bundle.js node_modules/streamroot-hlsjs-p2p-bundle/streamroot-hlsjs-p2p-bundle.debug.js
+
+            # Generate dist
+            - npm run build
+            - toolkit/add_banner.rb --file dist/$DIST_FILE
+                                    --deploy_env "staging - debug"
+                                    --version $(toolkit/current_version.rb)
+                                    --dependencies @streamroot/hlsjs-p2p-bundle-debug
+            - cp dist/$DIST_FILE $CIRCLE_ARTIFACTS/$DIST_NAME.debug.js
+
+            #
+            ## End Debug builds
+            #
+
+            # Generate manifest
+            - toolkit/build_manifest.rb --name "Video.js 5 hls.js source handler"
+                                        --version $(toolkit/current_version.rb)
+                                        --platform "web"
+                                        --artifacts ./$DIST_FILE
+                                        --debug-artifacts "https://circleci.com/api/v1/project/streamroot/$DIST_NAME/$CIRCLE_BUILD_NUM/artifacts/0/\$CIRCLE_ARTIFACTS/$DIST_NAME.debug.js"
+                                        --doc "https://github.com/streamroot/$DIST_NAME/tree/dev"
+                                        --output $CIRCLE_ARTIFACTS/manifest.yml
+
+            - toolkit/upload_to_s3.rb --bucket staging.streamroot.io
+                                      --region eu-west-1
+                                      --file $CIRCLE_ARTIFACTS/manifest.yml
+                                      --destinations $CIRCLE_PROJECT_REPONAME/$(toolkit/current_version.rb)/manifest.yml
+                                                     $CIRCLE_PROJECT_REPONAME/latest/manifest.yml
                                       --key $S3_KEY
                                       --secret $S3_SECRET
 
@@ -134,7 +175,7 @@ deployment:
             - rm -rf dist
 
             # Generate dist
-            - grunt browserify:dist
+            - npm run build
             - toolkit/add_banner.rb --file dist/$DIST_FILE
                                     --version $(toolkit/current_version.rb)
                                     --dependencies streamroot-hlsjs-p2p-bundle
@@ -164,6 +205,50 @@ deployment:
                                       --key $S3_KEY
                                       --secret $S3_SECRET
 
+            #
+            ## Debug builds
+            #
+
+            # Cleanup
+            - rm -rf dist
+
+            # Install debug streamroot-hlsjs-p2p-bundle
+            - rm -rf node_modules/streamroot-hlsjs-p2p-bundle
+            - npm install @streamroot/hlsjs-p2p-bundle-debug@rc
+            - mv node_modules/@streamroot/hlsjs-p2p-bundle-debug node_modules/streamroot-hlsjs-p2p-bundle
+            - mv node_modules/streamroot-hlsjs-p2p-bundle/hlsjs-p2p-bundle.js node_modules/streamroot-hlsjs-p2p-bundle/streamroot-hlsjs-p2p-bundle.debug.js
+
+            # Generate dist
+            - npm run build
+            - toolkit/add_banner.rb --file dist/$DIST_FILE
+                                    --deploy_env "preprod - debug"
+                                    --version $(toolkit/current_version.rb)
+                                    --dependencies @streamroot/hlsjs-p2p-bundle-debug
+            - cp dist/$DIST_FILE $CIRCLE_ARTIFACTS/$DIST_NAME.debug.js
+
+            #
+            ## End Debug builds
+            #
+
+            # Generate manifest
+            - toolkit/build_manifest.rb --name "Video.js 5 hls.js source handler"
+                                        --version $(toolkit/current_version.rb)
+                                        --platform "web"
+                                        --artifacts ./$DIST_FILE
+                                        --debug-artifacts "https://circleci.com/api/v1/project/streamroot/$DIST_NAME/$CIRCLE_BUILD_NUM/artifacts/0/\$CIRCLE_ARTIFACTS/$DIST_NAME.debug.js"
+                                        --doc "https://github.com/streamroot/$DIST_NAME/tree/master"
+                                        --output $CIRCLE_ARTIFACTS/manifest.yml
+
+            - toolkit/upload_to_s3.rb --bucket preprod.streamroot.io
+                                      --region eu-west-1
+                                      --file $CIRCLE_ARTIFACTS/manifest.yml
+                                      --destinations $CIRCLE_PROJECT_REPONAME/$(toolkit/current_version.rb --major)/manifest.yml
+                                                     $CIRCLE_PROJECT_REPONAME/$(toolkit/current_version.rb --no_patch)/manifest.yml
+                                                     $CIRCLE_PROJECT_REPONAME/$(toolkit/current_version.rb)/manifest.yml
+                                                     $CIRCLE_PROJECT_REPONAME/latest/manifest.yml
+                                      --key $S3_KEY
+                                      --secret $S3_SECRET
+
             # Changelog
             - toolkit/post_changelog.rb   --project $CIRCLE_PROJECT_REPONAME
                                           --env preprod
@@ -175,4 +260,3 @@ deployment:
 
             # Run bridge
             - bridge/run.rb --current_module videojs5-hlsjs-p2p-source-handler --trigger_branch master --token $BRIDGE_TOKEN
-
