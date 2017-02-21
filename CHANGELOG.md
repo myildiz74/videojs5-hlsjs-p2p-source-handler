@@ -37,3 +37,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Starting loading before play (now loads when media element requests data)
+[0.2.35]: https://github.com/streamroot/videojs5-hlsjs-p2p-source-handler/compare/v0.2.20...v0.2.35
