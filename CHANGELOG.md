@@ -4,10 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Dev]
 
+## [Unreleased]
+
+## [0.3.0] - 2017-02-24
+
 ### Changed
 - Replace Grunt with Webpack.
-
-## [Unreleased]
 
 ## [0.2.20] - 2016-12-08
 ### Updated
@@ -37,4 +39,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Starting loading before play (now loads when media element requests data)
-[0.2.35]: https://github.com/streamroot/videojs5-hlsjs-p2p-source-handler/compare/v0.2.20...v0.2.35
+[0.2.35]: https://github.com/streamroot/videojs5-hlsjs-p2p-source-handler/compare/v0.2.20...v0.2.35[0.3.0]: https://github.com/streamroot/videojs5-hlsjs-p2p-source-handler/compare/v0.2.20...v0.3.0
