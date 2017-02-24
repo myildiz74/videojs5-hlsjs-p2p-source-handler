@@ -4,10 +4,16 @@
     "name": "Streamroot",
     "email": "contact@streamroot.io"
   },
-  "version": "0.2.35",
+  "version": "0.3.0-beta.0",
   "main": "./lib/main.js",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && webpack --progress",
+    "build:dev": "npm run clean && webpack --progress --watch",
+    "dev": "webpack-dev-server -d"
   },
   "dependencies": {
     "streamroot-hlsjs-p2p-bundle": "^4.0.0"
@@ -18,10 +24,9 @@
     "url": "git@github.com:streamroot/videojs5-hlsjs-p2p-source-handler"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-browserify": "4.0.1",
-    "grunt-contrib-uglify": "^1.0.0",
-    "matchdep": "0.3.0",
-    "video.js": "^5.8.0"
+    "rimraf": "^2.5.4",
+    "video.js": "^5.8.0",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   }
 }
