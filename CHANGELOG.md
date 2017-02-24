@@ -5,9 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Dev]
 
 ## [Unreleased]
+### Fixed
+- Manifest deployment
 
 ## [0.3.0] - 2017-02-24
-
 ### Changed
 - Replace Grunt with Webpack.
 
