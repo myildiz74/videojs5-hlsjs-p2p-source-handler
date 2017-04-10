@@ -47,3 +47,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [0.3.5]: https://github.com/streamroot/videojs5-hlsjs-p2p-source-handler/compare/v0.3.1...v0.3.5
 [0.3.6]: https://github.com/streamroot/videojs5-hlsjs-p2p-source-handler/compare/v0.3.1...v0.3.6
 [0.3.7]: https://github.com/streamroot/videojs5-hlsjs-p2p-source-handler/compare/v0.3.1...v0.3.7
+[0.3.8]: https://github.com/streamroot/videojs5-hlsjs-p2p-source-handler/compare/v0.3.1...v0.3.8
